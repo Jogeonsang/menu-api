@@ -9,7 +9,7 @@ const Viewer = ({mediaType, imageUrlMenu}) => {
     <div className={cx('viewer')}>
       {
         mediaType === 'image' ? (
-          <img onClick={() => window.open(imageUrlMenu)} src = {imageUrlMenu} alt = "menu"/>
+          <img onClick={() => window.open(imageUrlMenu)} src = {imageUrlMenu} alt = "2016.06.17-salmon_steak.jpg"/>
         ) : (
           <div/>
         )

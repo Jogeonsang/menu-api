@@ -77,11 +77,13 @@ class App extends Component {
     const { handlePrev, handleNext} = this;
     return (
       <ViewerTemplate
+      
         menuNavigator={<MenuNavigator onPrev={handlePrev} onNext={handleNext} />}
         viewer = {(
           <Viewer
             imageUrlMenu={data.imageUrlMenu}
             mediaType={'image'}
+            nameMenu={data.nameMenu}
            />
         )}
       />
@@ -93,7 +95,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onData: (imageUrlMenu) => dispatch(dataRequest(imageUrlMenu)),
+  onData: (imageUrlMenu,nameMenu) => dispatch(dataRequest(imageUrlMenu,nameMenu)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

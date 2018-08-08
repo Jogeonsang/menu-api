@@ -18,8 +18,8 @@ export function* loadData(action) {
     try {
         const response = yield call(service.getAPOD,{nameMenu,imageUrlMenu} )
         console.log(response)
-        yield put (dataSuccess(response.data.result[1]))
-        console.log(dataSuccess(response.data.result[1]))
+        yield put (dataSuccess(response.data.result[7]))
+        console.log(dataSuccess(response.data.result[7]))
     }
     catch (error) {
         console.log(error);

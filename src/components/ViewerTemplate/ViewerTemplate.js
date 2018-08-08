@@ -4,10 +4,10 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const ViewerTemplate = ({ viewer, menuNavigator }) => (
+const ViewerTemplate = ({ viewer, menuNavigator,nameMenu }) => (
   <div className={cx('viewer-template')}>
     <header>
-      AXIOS PROJECT & REDUX - SAGA PROJECT
+      {nameMenu}
     </header>
     <div className={cx('viewer-wrapper')}>
       {viewer}
@@ -17,5 +17,4 @@ const ViewerTemplate = ({ viewer, menuNavigator }) => (
     </div>
   </div>
 );
-
 export default ViewerTemplate;

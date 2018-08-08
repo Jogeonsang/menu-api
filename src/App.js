@@ -44,6 +44,7 @@ class App extends Component {
             imageUrlMenu={data[index].imageUrlMenu}
             mediaType={'image'}
             nameMenu={data[index].nameMenu}
+            story={data[index].story}
            />
         )}
       /> 
@@ -58,8 +59,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onData: () => dispatch(dataRequest()),
   onNext: () => dispatch(nextMenu()),
-  onPrev: () => dispatch(prevMenu()),
-  onNon: () => dispatch(nonData())
+  onPrev: () => dispatch(prevMenu())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

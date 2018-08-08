@@ -17,10 +17,10 @@ import { now } from '../../../node_modules/moment';
 
 
 export function* loadData(action) {
-    const { nameMenu,imageUrlMenu } = action;
+    const { nameMenu,imageUrlMenu,story } = action;
     
     try {
-        const response = yield call(service.getAPOD,{nameMenu,imageUrlMenu} )
+        const response = yield call(service.getAPOD,{nameMenu,imageUrlMenu,story} )
         console.log(response)
         yield put (dataSuccess(response.data.result))
         console.log(response.data.result)

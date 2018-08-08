@@ -2,7 +2,7 @@
 import { moment } from 'moment';
 
 import {
-    DATA_SUCCESS, NEXT_MENU, PREV_MENU,NON_DATA
+    DATA_SUCCESS, NEXT_MENU, PREV_MENU
 } from './action';
 
 // 초기 상태
@@ -30,11 +30,7 @@ const apod = (state = initialState,action) => {
                 ...state,
                 index : state.index -1
             }
-        case NON_DATA:
-            return {
-                ...state,
-                index : state.index
-            }
+        
         default:
            return state;
     }

@@ -3,7 +3,7 @@ import styles from './Viewer.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-const Viewer = ({mediaType, imageUrlMenu,nameMenu}) => {
+const Viewer = ({mediaType, imageUrlMenu,nameMenu,story}) => {
   console.log(nameMenu);
   return (
     <div className={cx('viewer')}>
@@ -17,6 +17,9 @@ const Viewer = ({mediaType, imageUrlMenu,nameMenu}) => {
       }
       <div className={cx('title')}>
        {nameMenu}
+      </div>
+      <div className={cx('story')}>
+        {story}
       </div>
     </div>
   );

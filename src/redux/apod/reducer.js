@@ -2,36 +2,38 @@
 import { moment } from 'moment';
 
 import {
-    DATA_SUCCESS,
+    DATA_SUCCESS, NEXT_MENU, PREV_MENU,NON_DATA
 } from './action';
 
 // 초기 상태
 const initialState = {
-    nameMenu : [],
-    imageUrlMenu : [],
+ data : [],
+ index : 0
 }
+
 const apod = (state = initialState,action) => {
     // 래퍼런스 생성
 
     switch (action.type) {
-        /*case PREV:
-        console.log(prevDate)
-            return {
-                    prevDate : moment(date).subtract(1, 'days').format('YYYY-MM-DD')
-                    
-            }
-        case NEXT:
-        console.log(nextDate)
-            if(date === maxDate)
-            return {
-                ...state,
-                nextDate : moment(date).add(1, 'days').format('YYYY-MM-DD')
-                    
-                } */
         case DATA_SUCCESS:
             return {
                 ...state,
-                ...action.data
+                data: action.data
+            }
+        case NEXT_MENU:
+            return {
+                ...state,
+                index : state.index +1,
+            }
+        case PREV_MENU:
+            return {
+                ...state,
+                index : state.index -1
+            }
+        case NON_DATA:
+            return {
+                ...state,
+                index : state.index
             }
         default:
            return state;

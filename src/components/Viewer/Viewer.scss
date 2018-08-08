@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction:column;
   img {
     display: block;
     width: auto;
@@ -18,7 +19,11 @@
       box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     }
   }
+  .title {
+    color : white;
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
 }
-.viewer-title {
-  display: inline-block
-}
+
+  

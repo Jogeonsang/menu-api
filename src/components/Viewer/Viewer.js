@@ -15,7 +15,7 @@ const Viewer = ({mediaType, imageUrlMenu,nameMenu}) => {
           
         )
       }
-      <div className={cx('viewer-title')}>
+      <div className={cx('title')}>
        {nameMenu}
       </div>
     </div>

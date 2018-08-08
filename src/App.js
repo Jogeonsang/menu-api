@@ -6,7 +6,7 @@ import Viewer from './components/Viewer/Viewer';
 
 import * as getAPOD from './api/apod';
 import { connect } from 'react-redux';
-import { dataRequest, dataSuccess} from '../src/redux/apod/action';
+import { dataRequest, dataSuccess, prevMenu, nextMenu, nonData} from '../src/redux/apod/action';
 import { request } from 'https';
 
 class App extends Component {
@@ -16,86 +16,50 @@ class App extends Component {
     imageUrlMenu : null,
   }
 
-  /* getAPOD = async (date) => {
-    if (this.state.loading) return; // 이미 요청중이라면 무시
-
-    // 로딩 상태 시작
-    this.setState({
-      loading : true
-    });
-
-    try {
-      const response = await api.getAPOD(date);
-      // 비구조화 활당 + 새로운 이름
-      const { date: retrievedDate, url, media_type: mediaType} = response.data;
-
-      if(!this.state.maxDate) {
-        // 만약에 maxDate가 없으면 지금 받은 date로 지정
-        this.setState({
-          maxDate: retrievedDate
-        })
+  
+    handleNext = () => {
+      if(this.props.index < this.props.data.length -1){
+        this.props.onNext()
       }
-
-      //전달받을 데이터 넣어주기
-     /* this.setState({
-        date: retrievedDate,
-        mediaType,
-        url 
-      }); 
     }
-    catch (e) {
-      console.log(e);
-    }
-    
-    this.setState({
-      loading:false
-    });
-  } */
     
     handlePrev = () => {
-    const { date } = this.state;
-    const prevDate = moment(date).subtract(1, 'days').format('YYYY-MM-DD');
-    console.log(prevDate);
-    this.getAPOD(prevDate);
-  }
-
-    handleNext = () => {
-      const { date, maxDate } = this.state;
-      if(date === maxDate) return;
-
-      const nextDate = moment(date).add(1, 'days').format('YYYY-MM-DD');
-      console.log(nextDate);
-      this.getAPOD(nextDate);
-      
+      if(this.props.index !== 0 ){
+        this.props.onPrev()
+      }
     }
-  
   componentDidMount() {
     this.props.onData(dataSuccess);
   }
   render() {
-    const { data } = this.props;
+    const { data,index } = this.props;
+    console.log(this.props.index)
     const { handlePrev, handleNext} = this;
     return (
       <ViewerTemplate
       
         menuNavigator={<MenuNavigator onPrev={handlePrev} onNext={handleNext} />}
-        viewer = {(
+        viewer = {data.length!==0 &&(
           <Viewer
-            imageUrlMenu={data.imageUrlMenu}
+            imageUrlMenu={data[index].imageUrlMenu}
             mediaType={'image'}
-            nameMenu={data.nameMenu}
+            nameMenu={data[index].nameMenu}
            />
         )}
-      />
+      /> 
     );
   }
 }
 const mapStateToProps = (state) => ({
-  data : state.apod
+  data : state.apod.data,
+  index: state.apod.index
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onData: (imageUrlMenu,nameMenu) => dispatch(dataRequest(imageUrlMenu,nameMenu)),
+  onData: () => dispatch(dataRequest()),
+  onNext: () => dispatch(nextMenu()),
+  onPrev: () => dispatch(prevMenu()),
+  onNon: () => dispatch(nonData())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

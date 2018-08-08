@@ -9,7 +9,11 @@ import {
     DATA_SUCCESS,
     data,
     dataSuccess,
+    prevMenu,
+    dataRequest,
+    nonData
 } from './action';
+import { now } from '../../../node_modules/moment';
 
 
 export function* loadData(action) {
@@ -18,15 +22,14 @@ export function* loadData(action) {
     try {
         const response = yield call(service.getAPOD,{nameMenu,imageUrlMenu} )
         console.log(response)
-        yield put (dataSuccess(response.data.result[7]))
-        console.log(dataSuccess(response.data.result[7]))
+        yield put (dataSuccess(response.data.result))
+        console.log(response.data.result)
     }
+
     catch (error) {
         console.log(error);
     }
-}
-
+}   
 export function* watchData() {
     yield takeEvery(DATA_REQUEST, loadData)
-    console.log(DATA_REQUEST)
 }

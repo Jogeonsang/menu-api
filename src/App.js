@@ -10,12 +10,6 @@ import { dataRequest, dataSuccess, prevMenu, nextMenu, nonData} from '../src/red
 import { request } from 'https';
 
 class App extends Component {
-  state = {
-    id : '22',
-    nameMenu : null,
-    imageUrlMenu : null,
-  }
-
   
     handleNext = () => {
       if(this.props.index < this.props.data.length -1){

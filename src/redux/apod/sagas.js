@@ -13,7 +13,6 @@ import {
     dataRequest,
     nonData
 } from './action';
-import { now } from '../../../node_modules/moment';
 
 
 export function* loadData(action) {
